@@ -403,30 +403,26 @@ impl App {
         for (i, config) in self.config_manager.configs.iter().enumerate() {
             if config.alias.contains(target)
                 || config.address.contains(target)
-                || config.user.as_ref().map_or(false, |u| u.contains(target))
+                || config.user.as_ref().is_some_and(|u| u.contains(target))
             {
                 matches.push((i + 1, config));
             }
         }
 
-        match matches.len() {
-            1 => {
-                let (index, config) = matches[0];
-                println!("正在连接到 {} (编号: {})", config.alias, index);
-                self.ssh_manager.connect(config)?;
-                return Ok(());
+        if matches.len() == 1 {
+            let (index, config) = matches[0];
+            println!("正在连接到 {} (编号: {})", config.alias, index);
+            self.ssh_manager.connect(config)?;
+            return Ok(());
+        } else if matches.len() > 1 {
+            println!("找到多个匹配的配置:");
+            for (index, config) in matches {
+                println!("  {}: {} ({})", index, config.alias, config.address);
             }
-            n if n > 1 => {
-                println!("找到多个匹配的配置:");
-                for (index, config) in matches {
-                    println!("  {}: {} ({})", index, config.alias, config.address);
-                }
-                return Err("请使用更具体的编号或别名".into());
-            }
-            _ => {}
+            return Err("请使用更具体的编号或别名".into());
         }
 
-        Err(format!("未找到匹配的配置: {}", target).into())
+        Err(format!("未找到匹配的配置: {target}").into())
     }
 
     /// 检查并清理过期消息

@@ -139,8 +139,11 @@ jobs:
         echo "" >> release_info.md
         echo "### Linux x86_64" >> release_info.md
         echo "\`\`\`bash" >> release_info.md
-        echo "# 下载并安装" >> release_info.md
-        echo "wget https://github.com/\${{ github.repository }}/releases/download/${{ github.ref_name }}/mssh-linux-x86_64.tar.gz" >> release_info.md
+        echo "# 一键安装（推荐）" >> release_info.md
+        echo "curl -fsSL https://raw.githubusercontent.com/\${{ github.repository }}/main/install.sh | bash -s ${{ github.ref_name }}" >> release_info.md
+        echo "" >> release_info.md
+        echo "# 手动安装" >> release_info.md
+        echo "curl -L -o mssh-linux-x86_64.tar.gz https://github.com/\${{ github.repository }}/releases/download/${{ github.ref_name }}/mssh-linux-x86_64.tar.gz" >> release_info.md
         echo "tar -xzf mssh-linux-x86_64.tar.gz" >> release_info.md
         echo "sudo mv mssh /usr/local/bin/" >> release_info.md
         echo "chmod +x /usr/local/bin/mssh" >> release_info.md
@@ -148,8 +151,11 @@ jobs:
         echo "" >> release_info.md
         echo "### macOS x86_64 (Intel)" >> release_info.md
         echo "\`\`\`bash" >> release_info.md
-        echo "# 下载并安装" >> release_info.md
-        echo "wget https://github.com/\${{ github.repository }}/releases/download/${{ github.ref_name }}/mssh-macos-x86_64.tar.gz" >> release_info.md
+        echo "# 一键安装（推荐）" >> release_info.md
+        echo "curl -fsSL https://raw.githubusercontent.com/\${{ github.repository }}/main/install.sh | bash -s ${{ github.ref_name }}" >> release_info.md
+        echo "" >> release_info.md
+        echo "# 手动安装" >> release_info.md
+        echo "curl -L -o mssh-macos-x86_64.tar.gz https://github.com/\${{ github.repository }}/releases/download/${{ github.ref_name }}/mssh-macos-x86_64.tar.gz" >> release_info.md
         echo "tar -xzf mssh-macos-x86_64.tar.gz" >> release_info.md
         echo "sudo mv mssh /usr/local/bin/" >> release_info.md
         echo "chmod +x /usr/local/bin/mssh" >> release_info.md
@@ -157,8 +163,11 @@ jobs:
         echo "" >> release_info.md
         echo "### macOS ARM64 (Apple Silicon)" >> release_info.md
         echo "\`\`\`bash" >> release_info.md
-        echo "# 下载并安装" >> release_info.md
-        echo "wget https://github.com/\${{ github.repository }}/releases/download/${{ github.ref_name }}/mssh-macos-aarch64.tar.gz" >> release_info.md
+        echo "# 一键安装（推荐）" >> release_info.md
+        echo "curl -fsSL https://raw.githubusercontent.com/\${{ github.repository }}/main/install.sh | bash -s ${{ github.ref_name }}" >> release_info.md
+        echo "" >> release_info.md
+        echo "# 手动安装" >> release_info.md
+        echo "curl -L -o mssh-macos-aarch64.tar.gz https://github.com/\${{ github.repository }}/releases/download/${{ github.ref_name }}/mssh-macos-aarch64.tar.gz" >> release_info.md
         echo "tar -xzf mssh-macos-aarch64.tar.gz" >> release_info.md
         echo "sudo mv mssh /usr/local/bin/" >> release_info.md
         echo "chmod +x /usr/local/bin/mssh" >> release_info.md

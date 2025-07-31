@@ -63,7 +63,7 @@ impl EventHandler {
                 if matches!(*app.mode(), AppMode::List) {
                     if let Err(e) = app.show_import_selection() {
                         app.message_manager
-                            .set_error_message(format!("显示导入选择失败: {}", e));
+                            .set_error_message(format!("显示导入选择失败: {e}"));
                     }
                 }
             }
@@ -218,7 +218,7 @@ impl EventHandler {
                 }
                 Err(e) => {
                     app.message_manager
-                        .set_error_message(format!("操作失败: {}", e));
+                        .set_error_message(format!("操作失败: {e}"));
                 }
             }
         }

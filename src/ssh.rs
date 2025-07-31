@@ -105,12 +105,12 @@ impl SSHManager {
         if config.use_global_proxy {
             // 使用全局代理
             if let Some(proxy_cmd) = self.global_config.proxy.get_ssh_proxy_command() {
-                cmd.arg("-o").arg(format!("ProxyCommand={}", proxy_cmd));
+                cmd.arg("-o").arg(format!("ProxyCommand={proxy_cmd}"));
             }
         } else if let Some(proxy) = &config.proxy {
             // 使用自定义代理
             if let Some(proxy_cmd) = proxy.get_ssh_proxy_command() {
-                cmd.arg("-o").arg(format!("ProxyCommand={}", proxy_cmd));
+                cmd.arg("-o").arg(format!("ProxyCommand={proxy_cmd}"));
             }
         }
 
@@ -144,7 +144,7 @@ impl SSHManager {
             })
             .collect::<Vec<_>>()
             .join(" ");
-        println!("\x1b[33m最终执行命令:\x1b[0m {}", cmd_str);
+        println!("\x1b[33m最终执行命令:\x1b[0m {cmd_str}");
         println!("按 Ctrl+C 取消连接\n");
 
         // Set standard streams
@@ -165,6 +165,6 @@ impl SSHManager {
         std::io::stdout().flush()?;
 
         // If exec fails, return error
-        Err(format!("执行失败: {}", err).into())
+        Err(format!("执行失败: {err}").into())
     }
 }

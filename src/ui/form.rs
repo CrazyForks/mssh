@@ -429,7 +429,7 @@ fn render_checkbox_field(
         .unwrap_or(false);
 
     let checkbox_text = if checked { "[✓]" } else { "[ ]" };
-    let display_text = format!("{} {}", checkbox_text, label);
+    let display_text = format!("{checkbox_text} {label}");
 
     let checkbox =
         Paragraph::new(display_text).block(Block::default().borders(Borders::ALL).border_style(

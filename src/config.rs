@@ -63,7 +63,7 @@ impl ConfigManager {
             }
         });
 
-        let config_content = fs::read_to_string(config_path).unwrap_or_default();
+        let config_content = fs::read_to_string(&config_path).unwrap_or_default();
         let config_file: ConfigFile =
             toml::from_str(&config_content).unwrap_or_else(|_| ConfigFile {
                 global: GlobalConfig::default(),
@@ -185,11 +185,7 @@ impl ConfigManager {
             let line = line.trim();
 
             if line.starts_with("Host ") {
-                if line == host_line {
-                    in_host_block = true;
-                } else {
-                    in_host_block = false;
-                }
+                in_host_block = line == host_line;
                 continue;
             }
 

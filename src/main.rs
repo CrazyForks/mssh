@@ -89,7 +89,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 处理快速连接
     if let Some(target) = quick_connect {
         if let Err(e) = app.quick_connect(&target) {
-            eprintln!("连接失败: {}", e);
+            eprintln!("连接失败: {e}");
             std::process::exit(1);
         }
         return Ok(());
@@ -99,7 +99,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     if args.len() > 1 && !args[1].starts_with('-') {
         let target = &args[1];
         if let Err(e) = app.quick_connect(target) {
-            eprintln!("连接失败: {}", e);
+            eprintln!("连接失败: {e}");
             std::process::exit(1);
         }
         return Ok(());
@@ -107,7 +107,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     if import_ssh {
         if let Err(e) = app.show_import_selection() {
-            eprintln!("显示导入选择失败: {}", e);
+            eprintln!("显示导入选择失败: {e}");
             std::process::exit(1);
         }
         // return Ok(());
@@ -124,7 +124,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     terminal.show_cursor()?;
 
     if let Err(err) = res {
-        println!("{:?}", err);
+        println!("{err:?}");
     }
 
     Ok(())
@@ -154,7 +154,7 @@ fn run_app<B: ratatui::backend::Backend>(
                 Ok(false) => continue,     // 继续处理
                 Err(e) => {
                     app.message_manager
-                        .set_error_message(format!("事件处理错误: {}", e));
+                        .set_error_message(format!("事件处理错误: {e}"));
                 }
             }
         }

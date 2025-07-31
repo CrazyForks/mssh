@@ -414,8 +414,15 @@ impl FormData {
                 // SOCKS5代理 -> HTTP代理
                 self.data
                     .insert("proxy_type".to_string(), "Http".to_string());
+            } else if proxy_type == "Http" {
+                // HTTP代理 -> 全局代理
+                self.set(&FormField::UseGlobalProxy, "true".to_string());
+                self.data
+                    .insert("proxy_enabled".to_string(), "false".to_string());
+                self.data
+                    .insert("proxy_type".to_string(), "None".to_string());
             } else {
-                // HTTP代理 -> 全局代理 (或默认回到全局代理)
+                // 默认回到全局代理
                 self.set(&FormField::UseGlobalProxy, "true".to_string());
                 self.data
                     .insert("proxy_enabled".to_string(), "false".to_string());
