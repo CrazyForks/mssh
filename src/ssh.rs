@@ -1,5 +1,6 @@
 use crossterm::{
     cursor::Show,
+    event::DisableMouseCapture,
     execute,
     terminal::{disable_raw_mode, LeaveAlternateScreen},
 };
@@ -40,6 +41,7 @@ impl SSHManager {
         execute!(
             std::io::stdout(),
             LeaveAlternateScreen,
+            DisableMouseCapture, // 禁用鼠标捕获
             Show // 显示光标
         )?;
 
@@ -160,6 +162,7 @@ impl SSHManager {
         execute!(
             std::io::stdout(),
             LeaveAlternateScreen,
+            DisableMouseCapture, // 禁用鼠标捕获
             Show // 确保显示光标
         )?;
         std::io::stdout().flush()?;
